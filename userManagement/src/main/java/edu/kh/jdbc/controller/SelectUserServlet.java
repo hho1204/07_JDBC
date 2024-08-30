@@ -12,20 +12,25 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/selectAll")
-public class SelectAllServlet extends HttpServlet{
+
+@WebServlet("/selectUser")
+public class SelectUserServlet extends HttpServlet{
+		
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	
 		try {
+			// 전달 받은 파라미터 얻어오기
+			String userNo = req.getParameter("userNo");
+			// -> SQL 에서 TO_NUMBER를 이용해 자료형 변경 예정
+			
 			UserService service = new UserServiceImpl();
 			
-			List<User> userList = service.selectAll();
+			User user = service.selectUser(userNo);
 			
-			req.setAttribute("userList", userList);
+			req.setAttribute("resultUser", user);
 			
-			String path = "/WEB-INF/views/selectAll.jsp";
-			
+			String path = "/WEB-INF/views/selectUser.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);
 			
 		}catch (Exception e) {
@@ -33,4 +38,5 @@ public class SelectAllServlet extends HttpServlet{
 		}
 	
 	}
+	
 }

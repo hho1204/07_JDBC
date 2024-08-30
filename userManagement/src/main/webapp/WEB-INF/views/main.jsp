@@ -42,11 +42,21 @@
 
     <h3>메뉴</h3>
     <ul>
-      <li> <a href="#">사용자 목록 조회</a> </li>
+      <li> <a href="/selectAll">사용자 목록 조회</a> </li>
     </ul>
   </c:if>
 
   <%-- session에 message가 존재하는 경우 --%>
+  <c:if test="${!empty sessionScope.message}" >
+    <script>
+      alert("${sessionScope.message}");
+    </script>
+
+  <%-- session에 존재하는 message 제거 --%>
+    <c:remove var="message" scope="session" />
+  </c:if>
+
+    <%-- session에 message가 존재하는 경우 --%>
   <c:if test="${!empty sessionScope.message}" >
     <script>
       alert("${sessionScope.message}");

@@ -1,5 +1,7 @@
 package edu.kh.jdbc.service;
 
+import java.util.List;
+
 import edu.kh.jdbc.dto.User;
 
 public interface UserService {
@@ -21,4 +23,29 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	User login(String userId, String userPw) throws Exception;
+
+	
+
+	List<User> selectAll() throws Exception;
+
+	List<User> search(String searchId) throws Exception;
+
+
+
+	User selectUser(String userNo) throws Exception;
+
+	int deleteUser(int userNo) throws Exception;
+		
+	
+	/** 사용자 정보 수정
+	 * 
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	int updateUser(User user) throws Exception;
+
+	
+
+
 }
